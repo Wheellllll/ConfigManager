@@ -4,7 +4,7 @@
 ### 安装
 从 https://github.com/Wheellllll/ConfigManager/releases 下载最新的jar包添加到项目依赖里去
 
-### 实例
+### 使用方法
 在使用之前，请先使用`setConfigName`方法设置配置文件的路径
 
 配置文件的路径是相对于当前工作目录的路径，如果想获取当前的工作目录，可以使用如下语句输出工作目录：
