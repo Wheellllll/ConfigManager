@@ -55,7 +55,7 @@ public class Config {
         try {
             FileSystemManager fsManager = VFS.getManager();
             FileObject listendir = null;
-            File configFile = new File(String.format("%s.conf", configName));
+            File configFile = new File(configName);
             listendir = fsManager.resolveFile(configFile.getAbsolutePath());
             DefaultFileMonitor fm = new DefaultFileMonitor(new FileListener() {
                 @Override
@@ -85,7 +85,7 @@ public class Config {
     private void loadConfig() {
         try {
             rwLock.readLock().lock();
-            File configFile = new File(String.format("%s.conf", configName));
+            File configFile = new File(configName);
             FileReader reader = new FileReader(configFile);
             mProps = new Properties();
             mProps.load(reader);
@@ -103,7 +103,7 @@ public class Config {
         rwLock.writeLock().lock();
         try {
             mProps.setProperty(key, value);
-            File configFile = new File(String.format("%s.conf", configName));
+            File configFile = new File(configName);
             FileWriter writer = new FileWriter(configFile);
             mProps.store(writer, "host settings");
             writer.close();
