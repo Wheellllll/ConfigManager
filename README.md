@@ -19,7 +19,7 @@
 <dependencies>
     <dependency>
         <groupId>wheellllll</groupId>
-        <artifactId>LicenseManager</artifactId>
+        <artifactId>ConfigManager</artifactId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
 </dependencies>
