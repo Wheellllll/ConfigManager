@@ -30,7 +30,7 @@
 
 ### 使用方法
 在使用之前，请先使用`setConfigName`方法设置配置文件的路径
-本模块是一个单例模式，整个项目共用一个配置。
+
 本模块是线程安全的，您可以在多个线程中对配置进行读取和写入操作
 
 配置文件的路径是相对于当前工作目录的路径，如果想获取当前的工作目录，可以使用如下语句输出工作目录：
@@ -60,12 +60,29 @@ MAX_MESSAGE_PER_SESSION=100
 
 代码
 ```java
-Config.setConfigName("./application.conf");                //读取当前目录下的application.conf文件
-String host = Config.getConfig().getString("host");        //获取host属性，这里会得到localhost
-int port = Config.getConfig().getInt("port", 9001);        //获取port属性，由于没有设置，故这里会使用默认值9001
-boolean DEBUG = Config.getConfig().getBool("DEBUG", false) //获取debug属性，由于在配置文件里设置过，故这里没有使用默认值而是得到了true
+Config config = new Config();                              //新建一个配置
+config.setConfigName("./application.conf");                //读取当前目录下的application.conf文件
+config.configInit();                                       //初始化配置
+
+String host = config.getConfig().getString("host");        //获取host属性，这里会得到localhost
+int port = config.getConfig().getInt("port", 9001);        //获取port属性，由于没有设置，故这里会使用默认值9001
+boolean DEBUG = config.getConfig().getBool("DEBUG", false) //获取debug属性，由于在配置文件里设置过，故这里没有使用默认值而是得到了true
 int MAX_MESSAGE_PER_SECOND = Config.getConfig.getInt("MAX_MESSAGE_PER_SECOND")   //获取到5
 int MAX_MESSAGE_PER_SESSION = Config.getConfig.getInt("MAX_MESSAGE_PER_SESSION") //获取到100
+```
+####读取多个配置文件里的配置
+```java
+Config config1 = new Config();
+Config config2 = new COnfig();
+config1.setConfigName('./application1.conf');              //读取当前目录下的application1.conf文件
+config2.setConfigName('./application2.conf');              //读取当前目录下的application2.conf文件
+config1.configInit();
+cinfig2.configInit();
+
+String host = config1.getConfig.getString("host");         //从application1.conf里获取host属性
+
+int port = config2.getConfig,getInt("port");               //从application2.config里获取host属性
+
 ```
 
 #### 写入配置
@@ -73,9 +90,12 @@ int MAX_MESSAGE_PER_SESSION = Config.getConfig.getInt("MAX_MESSAGE_PER_SESSION")
 
 代码
 ```java
-Config.setConfigName("./application.conf");              //读取当前目录下的application.conf文件
-Config.getConfig().setProperty("host", "9001");          //设置host为9001
-int host = Config.getConfig.getInt("host");              //获取到9001
+Config config = new Config();
+config.setConfigName("./application.conf");              //读取当前目录下的application.conf文件
+config.configInit();
+
+config.getConfig().setProperty("host", "9001");          //设置host为9001
+int host = config.getConfig.getInt("host");              //获取到9001
 ```
 
 #### 动态加载(可选项)
