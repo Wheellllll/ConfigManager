@@ -12,44 +12,39 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * This class provide methods for config
  */
 public class Config {
-    /*
-     * 单例模式
-     */
+
 
     private Properties mProps;
     private ReadWriteLock rwLock;
-    private static String configName = "application";
-    private static ConfigListener mConfigListener = null;
+    private String configName = "application";
+    private ConfigListener mConfigListener = null;
 
-    private static class ConfigHolder {
-        private static final Config INSTANCE = new Config();
-    }
+
 
     /**
      * Set config file name
      * @param configName config file name
      */
-    public static void setConfigName(String configName) {
-        Config.configName = configName;
+    public void setConfigName(String configName) {this.configName = configName;
     }
 
     /**
      * Get a singleton config
      * @return Config
      */
-    public static final Config getConfig() {
-        return ConfigHolder.INSTANCE;
+    public Config getConfig() {
+        return this;
     }
 
     public interface ConfigListener {
         public void OnConfigChanged();
     }
 
-    public static void setConfigListener(ConfigListener configListener) {
+    public void setConfigListener(ConfigListener configListener) {
         mConfigListener = configListener;
     }
 
-    public Config() {
+    public void configInit() {
         rwLock = new ReentrantReadWriteLock();
         loadConfig();
         try {
