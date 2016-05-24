@@ -20,7 +20,7 @@
     <dependency>
         <groupId>wheellllll</groupId>
         <artifactId>ConfigManager</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ```
@@ -29,7 +29,7 @@
 从 https://github.com/Wheellllll/ConfigManager/releases 下载最新的jar包添加到项目依赖里去
 
 ### 使用方法
-在使用之前，请先使用`setConfigName`方法设置配置文件的路径
+在使用之前，请先使用`setConfigPath`方法设置配置文件的路径
 
 本模块是线程安全的，您可以在多个线程中对配置进行读取和写入操作
 
@@ -61,7 +61,7 @@ MAX_MESSAGE_PER_SESSION=100
 代码
 ```java
 Config config = new Config();                              //新建一个配置
-config.setConfigName("./application.conf");                //读取当前目录下的application.conf文件
+config.setConfigPath("./application.conf");                //读取当前目录下的application.conf文件
 config.configInit();                                       //初始化配置
 
 String host = config.getConfig().getString("host");        //获取host属性，这里会得到localhost
@@ -74,8 +74,8 @@ int MAX_MESSAGE_PER_SESSION = Config.getConfig.getInt("MAX_MESSAGE_PER_SESSION")
 ```java
 Config config1 = new Config();
 Config config2 = new COnfig();
-config1.setConfigName('./application1.conf');              //读取当前目录下的application1.conf文件
-config2.setConfigName('./application2.conf');              //读取当前目录下的application2.conf文件
+config1.setConfigPath('./application1.conf');              //读取当前目录下的application1.conf文件
+config2.setConfigPath('./application2.conf');              //读取当前目录下的application2.conf文件
 config1.configInit();
 cinfig2.configInit();
 
@@ -91,7 +91,7 @@ int port = config2.getConfig,getInt("port");               //从application2.con
 代码
 ```java
 Config config = new Config();
-config.setConfigName("./application.conf");              //读取当前目录下的application.conf文件
+config.setConfigPath("./application.conf");              //读取当前目录下的application.conf文件
 config.configInit();
 
 config.getConfig().setProperty("host", "9001");          //设置host为9001

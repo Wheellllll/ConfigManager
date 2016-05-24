@@ -11,9 +11,9 @@ public class ConfigTest {
     @Test
     public void getString() throws Exception {
         Config config1 = new Config();
-        config1.setConfigName("./test/test1");
+        config1.setConfigPath("./test/test1");
         Config config2 = new Config();
-        config2.setConfigName("./test/test2");
+        config2.setConfigPath("./test/test2");
         config1.configInit();
         config2.configInit();
         String host1 = config1.getConfig().getString("fooooooo");
@@ -27,9 +27,9 @@ public class ConfigTest {
     @Test
     public void getInt() throws Exception {
         Config config1 = new Config();
-        config1.setConfigName("./test/test1");
+        config1.setConfigPath("./test/test1");
         Config config2 = new Config();
-        config2.setConfigName("./test/test2");
+        config2.setConfigPath("./test/test2");
         config1.configInit();
         config2.configInit();
         int host1 = config1.getConfig().getInt("fooooooo1");
@@ -43,9 +43,9 @@ public class ConfigTest {
     @Test
     public void getLong() throws Exception {
         Config config1 = new Config();
-        config1.setConfigName("./test/test1");
+        config1.setConfigPath("./test/test1");
         Config config2 = new Config();
-        config2.setConfigName("./test/test2");
+        config2.setConfigPath("./test/test2");
         config1.configInit();
         config2.configInit();
         long host1 = config1.getConfig().getLong("fooooooo1");
@@ -59,9 +59,9 @@ public class ConfigTest {
     @Test
     public void getBool() throws Exception {
         Config config1 = new Config();
-        config1.setConfigName("./test/test1");
+        config1.setConfigPath("./test/test1");
         Config config2 = new Config();
-        config2.setConfigName("./test/test2");
+        config2.setConfigPath("./test/test2");
         config1.configInit();
         config2.configInit();
         boolean host1 = config1.getConfig().getBool("fooooooo2");
@@ -75,9 +75,9 @@ public class ConfigTest {
     @Test
     public void getFloat() throws Exception {
         Config config1 = new Config();
-        config1.setConfigName("./test/test1");
+        config1.setConfigPath("./test/test1");
         Config config2 = new Config();
-        config2.setConfigName("./test/test2");
+        config2.setConfigPath("./test/test2");
         config1.configInit();
         config2.configInit();
         float host1 = config1.getConfig().getFloat("fooooooo3");
@@ -91,9 +91,9 @@ public class ConfigTest {
     @Test
     public void getDouble() throws Exception {
         Config config1 = new Config();
-        config1.setConfigName("./test/test1");
+        config1.setConfigPath("./test/test1");
         Config config2 = new Config();
-        config2.setConfigName("./test/test2");
+        config2.setConfigPath("./test/test2");
         config1.configInit();
         config2.configInit();
         double host1 = config1.getConfig().getDouble("fooooooo3");

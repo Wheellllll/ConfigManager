@@ -16,16 +16,17 @@ public class Config {
 
     private Properties mProps;
     private ReadWriteLock rwLock;
-    private String configName = "application";
+    private String configPath = "application";
     private ConfigListener mConfigListener = null;
 
 
 
     /**
      * Set config file name
-     * @param configName config file name
+     * @param configPath config file name
      */
-    public void setConfigName(String configName) {this.configName = configName;
+    public void setConfigPath(String configPath) {
+        this.configPath = configPath;
     }
 
     /**
@@ -50,7 +51,7 @@ public class Config {
         try {
             FileSystemManager fsManager = VFS.getManager();
             FileObject listendir = null;
-            File configFile = new File(configName);
+            File configFile = new File(configPath);
             listendir = fsManager.resolveFile(configFile.getAbsolutePath());
             DefaultFileMonitor fm = new DefaultFileMonitor(new FileListener() {
                 @Override
@@ -80,7 +81,7 @@ public class Config {
     private void loadConfig() {
         try {
             rwLock.readLock().lock();
-            File configFile = new File(configName);
+            File configFile = new File(configPath);
             FileReader reader = new FileReader(configFile);
             mProps = new Properties();
             mProps.load(reader);
@@ -98,7 +99,7 @@ public class Config {
         rwLock.writeLock().lock();
         try {
             mProps.setProperty(key, value);
-            File configFile = new File(configName);
+            File configFile = new File(configPath);
             FileWriter writer = new FileWriter(configFile);
             mProps.store(writer, "host settings");
             writer.close();
